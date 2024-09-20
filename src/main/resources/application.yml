@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    name: catalogo-produtos
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postsgresql://localhost:5432/catalogo-produtos?currentSchema=catalo-produtos
+    username: catalogo-produtos
+    password: ${DB_PASS_CATALOGO_PRODUTOS:catalogo-produtos}
