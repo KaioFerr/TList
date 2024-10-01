@@ -1,7 +1,7 @@
 spring:
   datasource:
-    name: catalogo-produtos
+    name: task_manager
+    url: jdbc:postgresql://localhost:5432/task_manager?currentSchema=task_manager
+    username: postgres
+    password: 123456
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postsgresql://localhost:5432/catalogo-produtos?currentSchema=catalo-produtos
-    username: catalogo-produtos
-    password: ${DB_PASS_CATALOGO_PRODUTOS:catalogo-produtos}
