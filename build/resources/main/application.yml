@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    name: task_manager
+    url: jdbc:postgresql://localhost:5432/task_manager
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
