@@ -4,10 +4,10 @@ import java.util.*
 
 class Task(
     val id: UUID = UUID.randomUUID(),
-    val title: String,
-    val description: String,
-    val due_date: String,
-    val status: String,
-    val priority: String,
-    val updated_at: String
+    title: String,
+    description: String,
+    due_date: String,
+    status: String,
+    priority: String,
+    updated_at: String
 )
