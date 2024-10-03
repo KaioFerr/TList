@@ -1,7 +1,7 @@
 package br.com.TList.application.Task
 
 
-import br.com.TList.application.Task.exceptions.TaskNaoEncontradaException
+import br.com.TList.application.Task.exception.TaskNaoEncontradaException
 import br.com.TList.domain.task.Task
 import br.com.TList.domain.task.TaskRepository
 import org.springframework.http.ResponseEntity
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-abstract class TaskService(
+class TaskService(
     private val taskRepository: TaskRepository
 ) {
 
