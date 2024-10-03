@@ -17,7 +17,7 @@ class TaskController(
         return taskHandler.findAll()
     }
 
-    @GetMapping("/tasks/{taskId: $UUID_REGEX}")
+    @GetMapping("/tasks/{taskId:$UUID_REGEX}")
     fun findById(@PathVariable taskId: String) : ResponseEntity<Task>{
         return taskHandler.findById(taskId)
     }

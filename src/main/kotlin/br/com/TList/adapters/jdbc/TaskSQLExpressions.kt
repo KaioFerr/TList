@@ -23,6 +23,6 @@ object TaskSQLExpressions {
                created_at,
                updated_at
         FROM tasks
-        WHERE id = :id
+        WHERE tasks.id = :id
     """.trimIndent()
 }
