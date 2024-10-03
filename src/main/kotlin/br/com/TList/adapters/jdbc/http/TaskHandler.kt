@@ -4,6 +4,7 @@ import br.com.TList.application.Task.TaskService
 import br.com.TList.domain.task.Task
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Component
+import java.util.UUID
 
 @Component
 class TaskHandler(
@@ -13,5 +14,10 @@ class TaskHandler(
     fun findAll(): ResponseEntity<List<Task>> {
         val tasks = taskService.findAll()
         return ResponseEntity.ok(tasks)
+    }
+
+    fun findById(taskId: String): ResponseEntity<Task> {
+        val task = taskService.findById(UUID.fromString(taskId))
+        return ResponseEntity.ok(task)
     }
 }

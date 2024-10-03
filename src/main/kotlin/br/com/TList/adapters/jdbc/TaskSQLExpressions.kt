@@ -12,4 +12,17 @@ object TaskSQLExpressions {
                updated_at
         FROM tasks
     """.trimIndent()
+
+    fun sqlSelectById() = """
+        SELECT id,
+               title,
+               description,
+               due_date,
+               status,
+               priority,
+               created_at,
+               updated_at
+        FROM tasks
+        WHERE id = :id
+    """.trimIndent()
 }
