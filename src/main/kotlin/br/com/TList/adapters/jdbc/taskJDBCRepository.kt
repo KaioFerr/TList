@@ -24,6 +24,6 @@ class taskJDBCRepository(
                 updated_at = rs.getString("updated_at")
             )
         })
-        return tasks
+        return println(task)
     }
 }
