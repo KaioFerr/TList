@@ -25,4 +25,17 @@ object TaskSQLExpressions {
         FROM tasks
         WHERE tasks.id = :id
     """.trimIndent()
+
+    fun sqlInsertTask() = """
+        INSERT INTO tasks (
+            id,
+            title,
+            description,
+            due_date,
+            status,
+            priority,
+            created_at,
+            updated_at
+        )
+    """.trimIndent()
 }

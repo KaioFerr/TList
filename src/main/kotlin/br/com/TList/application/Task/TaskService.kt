@@ -19,4 +19,9 @@ class TaskService(
     fun findById(taskId: UUID): Task{
         return taskRepository.findById(taskId) ?: throw TaskNaoEncontradaException(taskId)
     }
+    fun insert(task: TaskCreateCommand): Task{
+        val taskDomain = task.toTask()
+        taskRepository.insert(task = task.toTask())
+        return findById(taskDomain.id)
+    }
 }

@@ -9,5 +9,6 @@ class Task(
     val due_date: String,
     val status: String,
     val priority: String,
+    val created_at: String,
     val updated_at: String
 )
