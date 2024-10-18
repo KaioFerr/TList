@@ -21,7 +21,7 @@ class TaskService(
     }
     fun insert(task: TaskCreateCommand): Task{
         val taskDomain = task.toTask()
-        taskRepository.insert(task = task.toTask())
+        taskRepository.insert(task = taskDomain)
         return findById(taskDomain.id)
     }
 }

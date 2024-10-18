@@ -25,7 +25,7 @@ class TaskController(
         return taskHandler.findById(taskId)
     }
 
-    @PostMapping("/task")
+    @PostMapping("/tasks")
     fun insert(@RequestBody task: TaskCreateCommand): ResponseEntity<Task>{
         return taskHandler.insert(task)
     }

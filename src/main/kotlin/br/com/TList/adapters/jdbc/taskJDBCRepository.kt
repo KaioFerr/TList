@@ -10,6 +10,9 @@ import org.springframework.jdbc.core.RowMapper
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations
 import org.springframework.stereotype.Repository
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 @Repository
@@ -61,15 +64,17 @@ class taskJDBCRepository(
 
     private fun rowMapper() = RowMapper<Task>{ rs, _ ->
         val taskId = UUID.fromString(rs.getString("id"))
-        Task(
-            id = taskId,
-            title = rs.getString("title"),
-            description = rs.getString("description"),
-            due_date = rs.getString("due_date"),
-            status = rs.getString("status"),
-            priority = rs.getString("priority"),
-            created_at = rs.getString("created_at"),
-            updated_at = rs.getString("updated_at")
-        )
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        rs.getString("due_date")?.let { LocalDate.parse(it, formatter) }?.let {
+            Task(
+                id = taskId,
+                title = rs.getString("title"),
+                description = rs.getString("description"),
+                due_date = it,
+                status = rs.getString("status"),
+                priority = rs.getInt("priority"),
+
+            )
+        }
     }
 }

@@ -7,9 +7,7 @@ object TaskSQLExpressions {
                description,
                due_date,
                status,
-               priority,
-               created_at,
-               updated_at
+               priority               
         FROM tasks
     """.trimIndent()
 
@@ -33,9 +31,14 @@ object TaskSQLExpressions {
             description,
             due_date,
             status,
-            priority,
-            created_at,
-            updated_at
+            priority            
+        ) VALUES (
+            :id,
+            :title,
+            :description,
+            :due_date,
+            :status,
+            :priority
         )
     """.trimIndent()
 }
