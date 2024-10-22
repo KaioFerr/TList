@@ -11,4 +11,6 @@ interface TaskRepository {
     fun insert(task: Task): Boolean
 
     fun update(task: Task): Boolean
+
+    fun delete(taskId: UUID): Boolean
 }

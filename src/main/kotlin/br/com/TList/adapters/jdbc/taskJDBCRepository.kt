@@ -1,8 +1,10 @@
 package br.com.TList.adapters.jdbc
 
+import br.com.TList.adapters.jdbc.TaskSQLExpressions.sqlDeleteTaskById
 import br.com.TList.adapters.jdbc.TaskSQLExpressions.sqlInsertTask
 import br.com.TList.adapters.jdbc.TaskSQLExpressions.sqlSelectAll
 import br.com.TList.adapters.jdbc.TaskSQLExpressions.sqlSelectById
+import br.com.TList.adapters.jdbc.TaskSQLExpressions.sqlUpdateTask
 import br.com.TList.domain.task.Task
 import br.com.TList.domain.task.TaskRepository
 import mu.KotlinLogging
@@ -68,6 +70,18 @@ class taskJDBCRepository(
         }
     }
 
+    override fun delete(taskId: UUID): Boolean {
+        try {
+            val params = MapSqlParameterSource("id", taskId)
+            val linhasExcluidas = db.update(sqlDeleteTaskById(), params)
+            return linhasExcluidas == 1
+        }catch (ex: Exception){
+            LOGGER.error { "Houve um erro ao excluir o produto: ${ex.message}" }
+            throw ex
+        }
+    }
+
+
     private fun rowMapper() = RowMapper<Task>{ rs, _ ->
         val taskId = UUID.fromString(rs.getString("id"))
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
@@ -83,6 +97,9 @@ class taskJDBCRepository(
             )
         }
     }
+
+
+
 
     private fun parametros(task: Task): MapSqlParameterSource{
         val params = MapSqlParameterSource()

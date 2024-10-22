@@ -30,4 +30,9 @@ class TaskService(
         taskRepository.update(task.toTask(taskId))
         return findById(taskId = taskId)
     }
+
+    fun delete(taskId: UUID){
+        taskRepository.findById(taskId = taskId) ?: throw TaskNaoEncontradaException(taskId)
+        taskRepository.delete(taskId)
+    }
 }

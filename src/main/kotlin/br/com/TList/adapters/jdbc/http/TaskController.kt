@@ -32,4 +32,9 @@ class TaskController(
     fun update(@RequestBody task: TaskUpdateCommand, @PathVariable taskId: String): ResponseEntity<Task>{
         return taskHandler.update(task, taskId)
     }
+
+    @DeleteMapping("/tasks/{taskId:$UUID_REGEX}")
+    fun delete(@PathVariable taskId: String): ResponseEntity<String>{
+        return taskHandler.delete(taskId)
+    }
 }

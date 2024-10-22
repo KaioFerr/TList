@@ -41,10 +41,8 @@ object TaskSQLExpressions {
             :priority
         )
     """.trimIndent()
-}
 
-
-fun sqlUpdateTask() = """
+    fun sqlUpdateTask() = """
     UPDATE tasks
             set 
                 title = :title,
@@ -55,11 +53,17 @@ fun sqlUpdateTask() = """
         WHERE id = :id
     """.trimIndent()
 
+    fun sqlDeleteTaskById()= """
+        DELETE
+        FROM tasks
+        where id = :id
+    """.trimIndent()
+}
 
 
 
-//fun delete() = """
-//    DELETE
-//    FROM tasks
-//    where id = :id
-//""".trimIndent()
+
+
+
+
+//fun delete()

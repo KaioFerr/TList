@@ -33,4 +33,9 @@ class TaskHandler(
         val task = taskService.update(taskUpdateCommand, UUID.fromString(taskId))
         return ResponseEntity.ok(task)
     }
+
+    fun delete(taskId: String): ResponseEntity<String>{
+        taskService.delete(taskId = UUID.fromString(taskId))
+        return ResponseEntity.noContent().build()
+    }
 }
