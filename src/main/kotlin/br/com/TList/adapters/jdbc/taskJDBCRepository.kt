@@ -47,17 +47,23 @@ class taskJDBCRepository(
 
     override fun insert(task: Task): Boolean {
         try {
-            val params = MapSqlParameterSource()
-            params.addValue("id", task.id)
-            params.addValue("title", task.title)
-            params.addValue("description", task.description)
-            params.addValue("due_date", task.due_date)
-            params.addValue("status", task.status)
-            params.addValue("priority", task.priority)
+            val params = parametros(task)
             val linhasAfetadas = db.update(sqlInsertTask(), params)
             return linhasAfetadas > 0
         }catch (ex: Exception){
             LOGGER.error { "Houve um erro ao inserir o produto: ${ex.message}" }
+            throw ex
+        }
+    }
+
+
+    override fun update(task: Task): Boolean {
+        try {
+            val params = parametros(task)
+            val linhasAfetadas = db.update(sqlUpdateTask(), params)
+            return linhasAfetadas > 0
+        }catch (ex: Exception){
+            LOGGER.error { "Houve um erro ao atualizar o produto: ${ex.message}" }
             throw ex
         }
     }
@@ -76,5 +82,16 @@ class taskJDBCRepository(
 
             )
         }
+    }
+
+    private fun parametros(task: Task): MapSqlParameterSource{
+        val params = MapSqlParameterSource()
+        params.addValue("id", task.id)
+        params.addValue("title", task.title)
+        params.addValue("description", task.description)
+        params.addValue("due_date", task.due_date)
+        params.addValue("status", task.status)
+        params.addValue("priority", task.priority)
+        return params
     }
 }

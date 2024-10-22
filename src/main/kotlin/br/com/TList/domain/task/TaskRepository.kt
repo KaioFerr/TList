@@ -9,4 +9,6 @@ interface TaskRepository {
     fun findById(taskId: UUID): Task?
 
     fun insert(task: Task): Boolean
+
+    fun update(task: Task): Boolean
 }

@@ -24,4 +24,10 @@ class TaskService(
         taskRepository.insert(task = taskDomain)
         return findById(taskDomain.id)
     }
+
+    fun update(task: TaskUpdateCommand, taskId: UUID): Task {
+        taskRepository.findById(taskId = taskId) ?: throw TaskNaoEncontradaException(taskId)
+        taskRepository.update(task.toTask(taskId))
+        return findById(taskId = taskId)
+    }
 }

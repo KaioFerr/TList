@@ -42,3 +42,24 @@ object TaskSQLExpressions {
         )
     """.trimIndent()
 }
+
+
+fun sqlUpdateTask() = """
+    UPDATE tasks
+            set 
+                title = :title,
+                description = :description,
+                due_date = :due_date,
+                status = :status,
+                priority = :priority           
+        WHERE id = :id
+    """.trimIndent()
+
+
+
+
+//fun delete() = """
+//    DELETE
+//    FROM tasks
+//    where id = :id
+//""".trimIndent()

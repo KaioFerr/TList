@@ -1,13 +1,11 @@
 package br.com.TList.adapters.jdbc.http
 
 import br.com.TList.application.Task.TaskCreateCommand
+import br.com.TList.application.Task.TaskUpdateCommand
 import br.com.TList.domain.task.Task
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
+import java.util.*
 
 private const val UUID_REGEX = "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}"
 
@@ -28,5 +26,10 @@ class TaskController(
     @PostMapping("/tasks")
     fun insert(@RequestBody task: TaskCreateCommand): ResponseEntity<Task>{
         return taskHandler.insert(task)
+    }
+
+    @PutMapping("/tasks/{taskId:$UUID_REGEX}")
+    fun update(@RequestBody task: TaskUpdateCommand, @PathVariable taskId: String): ResponseEntity<Task>{
+        return taskHandler.update(task, taskId)
     }
 }

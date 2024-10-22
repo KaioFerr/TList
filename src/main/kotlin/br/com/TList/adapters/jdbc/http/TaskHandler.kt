@@ -2,6 +2,7 @@ package br.com.TList.adapters.jdbc.http
 
 import br.com.TList.application.Task.TaskCreateCommand
 import br.com.TList.application.Task.TaskService
+import br.com.TList.application.Task.TaskUpdateCommand
 import br.com.TList.domain.task.Task
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
@@ -26,5 +27,10 @@ class TaskHandler(
     fun insert(taskCreateCommand: TaskCreateCommand): ResponseEntity<Task>{
         val task = taskService.insert(taskCreateCommand)
         return ResponseEntity.status(HttpStatus.CREATED).body(task)
+    }
+
+    fun update(taskUpdateCommand: TaskUpdateCommand, taskId: String): ResponseEntity<Task>{
+        val task = taskService.update(taskUpdateCommand, UUID.fromString(taskId))
+        return ResponseEntity.ok(task)
     }
 }
